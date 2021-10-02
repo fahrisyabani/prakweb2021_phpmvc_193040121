@@ -1,23 +1,24 @@
 <?php
 
-class Mahasiswa_model {
+class Mahasiswa_model
+{
     private $dbh; // database handler
     private $stmt; // statement
 
 
-    public function __construct() 
+    public function __construct()
     {
         // data source name
-        $dsn = 'mysql:host=localhost:8080;dbname=phpmvc';
+        $dsn = 'mysql:host=localhost;dbname=phpmvc';
 
         try {
-           $this->dbh = new PDO($dsn, 'root', 'YES');
-        } catch(PDOException $e) {
+            $this->dbh = new PDO($dsn, 'root', '');
+        } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
 
-    public function getAllMahasiswa() 
+    public function getAllMahasiswa()
     {
         $this->stmt = $this->dbh->prepare('SELECT * FROM mahasiswa');
         $this->stmt->execute();
